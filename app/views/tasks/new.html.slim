@@ -1,0 +1,18 @@
+.container
+  h1 タスクの新規登録
+  p.lead You can create and register a new task at here.
+
+  .nav.justify-content-end
+    = link_to '一覧', tasks_path, class: 'nav-link'
+
+
+    / rows:はtext_area メソッドの属性で、おそらく段落数を指定するためのもの
+    / f.submit nil, のnilは「登録する」という定義済みの用語を引っ張ってくるため。'登録する'とここで書いても良い
+  = form_for @task do |f|
+    .form_group
+      = f.label :name
+      = f.text_field :name, class: 'form-control', id: 'task_name'
+    .form_group
+      = f.label :description
+      = f.text_area :description, rows: 5, class: 'form-control', id: 'task_name'
+    = f.submit nil, class: 'btn btn-outline-primary'
