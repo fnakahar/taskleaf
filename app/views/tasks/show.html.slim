@@ -1,2 +1,27 @@
-h1 Tasks#show
-p Find me in app/views/tasks/show.html.slim
+.container
+  h1 タスク「#{@task.name}」の詳細
+  p.lead Detailed explanation of the selected task.
+
+  .nav.justify-content-end
+    = link_to '一覧', tasks_path, class: 'nav-link'
+
+  table.table.table-hover
+    tr
+      th = Task.human_attribute_name(:id)
+      td = @task.id
+    tr
+      th = Task.human_attribute_name(:name)
+      td = @task.name
+    tr
+      th = Task.human_attribute_name(:description)
+      td = simple_format(h(@task.description), {}, sanitize: false, wrapper_tag: "div")
+      / simple_formatは改行した場所なども含め、登録者が自分で入力した状態を保持して出力させる。
+    tr
+      th = Task.human_attribute_name(:created_at)
+      td = @task.created_at
+    tr
+      th = Task.human_attribute_name(:updated_at)
+      td = @task.updated_at
+
+  = link_to '編集', edit_task_path(@task), class: 'btn btn-primary mr-3'
+  = link_to '削除', task_path(@task), method: :delete, data: { confirm: "タスク「#{@task.name}」を削除します。よろしいですか？" }, class: 'btn btn-danger'

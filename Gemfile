@@ -66,3 +66,10 @@ gem 'slim-rails'
 gem 'html2slim'
 
 gem 'bootstrap'
+
+gem 'jquery-rails'
+
+gem 'pry-rails'
+gem 'pry-doc'
+gem 'pry-byebug'
+gem 'pry-stack_explorer'

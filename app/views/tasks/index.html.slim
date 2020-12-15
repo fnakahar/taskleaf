@@ -7,5 +7,23 @@
     .col 一列目
     .col 二列目
     .col 三列目
-
+  .mb-3
   = link_to '新規作成', new_task_path, class: 'btn btn-outline-primary btn-block'
+
+  / human_attribute_nameはconfig/locales/ja.ymlに書いてある翻訳情報を自動的に引っ張ってきてくれるメソッド
+  / ずばり”名称”と書いてもいいが、それだと国際化対応考えると使い勝手悪い？
+  / mb-3は書くだけでスペースを作ることができて便利
+  .mb-3
+  table.table.table-striped.table-hover
+    thead.thead-default
+      tr
+        th = Task.human_attribute_name(:name)
+        th = Task.human_attribute_name(:created_at)
+        th
+      tbody
+        - @task.each do |task|
+          tr
+            td = link_to task.name, task_path(task)
+            td = task.created_at
+            td = link_to '編集', edit_task_path(task), class: 'btn btn-primary mr-3 float-right'
+            td = link_to '削除', task_path(task), method: :delete, data: { confirm: "タスク「#{task.name}」を削除します。よろしいですか？" }, class: 'btn btn-danger '

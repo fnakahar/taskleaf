@@ -11,4 +11,16 @@ html
     .app-title.navbar.navbar-expand-md.navbar-light.bg-light
       .navbar-brand Taskleaf
     .container
+      - if flash.notice.present?
+        .alert.alert-success[role="alert"]=flash.notice
+          / .alert-successはbootstrapのクラスで、flashメッセージを緑帯背景色で表示するように指示している。
+
     = yield
+
+    javascript:
+      $(function(){
+        $(".alert").fadeOut(3000);
+      });
+
+
+

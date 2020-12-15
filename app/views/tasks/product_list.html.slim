@@ -1,0 +1,21 @@
+.py-4
+  #id = “product-list’
+  .conteier
+    h2 商品一覧
+
+    / タブ部分定義
+    .nav.nav-tabs
+      .nav-tem.nav-link.active data-toggle="tab" href="#panel-skin-lotion"
+      .nav-tem.nav-link  data-toggle="tab" href="#panel-face-wash"
+      .nav-tem.nav-link  data-toggle="tab" href="#panel-beauty-health"
+
+    / 各タブの表示内容
+    .tab-content
+      .tab-pane.fade.show.active.border.border-top-0 id="panel-skin-lotion"
+        = form_for @products each do |product|
+          = .card-img.top src"#".prodict_id
+          = .card-body
+          h4.card-title @product.id.name
+          p.card-text 簡単な製品説明
+          = link_to '商品詳細', xx_product_path, .btn.btn-primary
+

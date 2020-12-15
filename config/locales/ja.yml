@@ -12,7 +12,7 @@ ja:
       task: タスク
     attributes:
       task:
-        id: ID
+        id: タスクID
         name: 名称
         description: 詳しい説明
         created_at: 登録日時
