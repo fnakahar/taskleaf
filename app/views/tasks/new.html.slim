@@ -5,20 +5,75 @@
   .nav.justify-content-end
     = link_to '一覧', tasks_path, class: 'nav-link'
 
+  / エラーメッセージはja.ymlが自動生成してくれる。すごく便利。。。
+  .mb-3
+    - if @task.errors.present?
+      ul.list-unstyled.text-danger#error_explanation
+        - @task.errors.full_messages.each do |message|
+          li= message
 
     / rows:はtext_area メソッドの属性で、おそらく段落数を指定するためのもの
     / f.submit nil, のnilは「登録する」というja.yml定義済みの用語を引っ張ってくるため。'登録する'とここで書いても良い
   = form_for @task do |f|
-    .form_group
+    .form-group
       = f.label :name
       = f.text_field :name, class: 'form-control', id: 'task_name'
-    .form_group
+    .form-group
       = f.label :description
       = f.text_area :description, rows: 5, class: 'form-control', id: 'task_name'
     = f.submit nil, class: 'btn btn-outline-primary'
 
-
+  .mb-3
   button.btn.btn-primary[type="button"]
     |  未読メッセージ数
     span.badge.badge-light
       | 5
+
+  .mb-3
+  .progress
+    .progress-bar.progress-bar-striped.progress-bar-animated[style="width:25%" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"]
+      | ニックネーム入力
+
+  / カードデザインをためす !!!! 写真はimages配下に任意のフォルダを作ってそこを参照させる！！card-img-topクラスが何故か動作しない。。。
+
+  .mb-3
+  .card-deck.mb-5
+    .card
+      = image_tag "productpng/sptm.png", class: "card-img-top"
+      .card-body
+        h4.card-title
+          | SPTM化粧品１
+        h6.card-subtitle.text-muted
+          | 最高品質の乳液をあなたに
+        p.card-text
+          | SPTMが贈る、あらゆる肌質になじむ毎日使える贅沢な乳液です。毎日頑張るあなたの肌に安らぎと再生を。
+        = link_to '製品詳細', "#", class: 'btn btn-primary'
+
+    .card
+      = image_tag "productpng/sptm2.png", class: "card-img-top"
+      .card-body
+        h4.card-title
+          | SPTM化粧品１
+        h6.card-subtitle.text-muted
+          | 最高品質の乳液をあなたに
+        p.card-text
+          | SPTMが贈る、あらゆる肌質になじむ毎日使える贅沢な乳液です。毎日頑張るあなたの肌に安らぎと再生を。
+        = link_to '製品詳細', "#", class: 'btn btn-primary'
+
+    .card
+      = image_tag "productpng/sptm3.png", class: "card-img-top"
+      .card-body
+        h4.card-title
+          | SPTM化粧品１
+        h6.card-subtitle.text-muted
+          | 最高品質の乳液をあなたに
+        p.card-text
+          | SPTMが贈る、あらゆる肌質になじむ毎日使える贅沢な乳液です。毎日頑張るあなたの肌に安らぎと再生を。
+        = link_to '製品詳細', "#", class: 'btn btn-primary'
+
+  / 口コミイメージ作成
+  .media.mb-5
+    = image_tag "productpng/five-stars.png", class: "mr-3"
+    .media-body
+      h5.text-success 運命の化粧品に出会えました！
+      p これまでいろいろな化粧水を試してきましたが、価格と品質が釣り合っているものがすくなく悩んでいました。SPTMの化粧水は少し高いなとはじめは思いましたが、いまは値段以上の価値があると思っています。友達にも勧めたいです。ただし、「安い」化粧品ではないと思います。
