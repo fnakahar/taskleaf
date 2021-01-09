@@ -1,0 +1,33 @@
+.container
+  h1 ユーザーの新規登録
+  p.lead You can create and register a new user at here.
+
+  .nav.justify-content-end
+    = link_to '一覧', admin_users_path, class: 'nav-link'
+
+  / form-check, form-check-label, form-check-label はbootstrapのクラス名。チェックボックスを表示させるパターン | がチェックボックスだとイメージすればよい。
+
+  .mb-3
+    - if @user.errors.present?
+      ul.list-unstyled.text-danger#error_explanation
+        - @user.errors.full_messages.each do |message|
+          li= message
+
+  = form_for [:admin, @user] do |f|
+    .form_group
+      = f.label :name, '名前'
+      = f.text_field :name, class: 'form-control'
+    .form_group
+      = f.label :email, 'メールアドレス'
+      = f.text_field :email, class: 'form-control'
+    .form-check
+      = f.label :admin, class: 'form-check-label'
+        = f.check_box :admin, class: 'form-check-label'
+        | 管理者権限
+    .form_group
+      = f.label :password, 'パスワード'
+      = f.password_field :password, class: 'form-control'
+      .form_group
+        = f.label :password_confirmation, 'パスワード(確認)'
+        = f.password_field :password_confirmation, class: 'form-control'
+    = f.submit nil, class: 'btn btn-outline-primary'
